@@ -129,25 +129,25 @@ return (
       <h2 className="h4">Chord Types:</h2>
       <div className="d-flex justify-content-center row">
         <button
-          className={`col-6 my-1 btn btn-sm ${selections.major ? 'btn-success' : 'btn-secondary'} mx-2`} onTouchStart={() => handleDivClick('augmented')}
+          className={`col-6 my-1 btn btn-sm ${selections.major ? 'btn-success' : 'btn-secondary'} mx-2`} 
           onClick={() => handleDivClick('major')}
         >
           Major
         </button>
         <button
-          className={`col-6 my-1 btn btn-sm ${selections.minor ? 'btn-success' : 'btn-secondary'} mx-2`} onTouchStart={() => handleDivClick('augmented')}
+          className={`col-6 my-1 btn btn-sm ${selections.minor ? 'btn-success' : 'btn-secondary'} mx-2`} 
           onClick={() => handleDivClick('minor')}
         >
           Minor
         </button>
         <button
-          className={`col-6 my-1 btn btn-sm ${selections.diminished ? 'btn-success' : 'btn-secondary'} mx-2`} onTouchStart={() => handleDivClick('augmented')}
+          className={`col-6 my-1 btn btn-sm ${selections.diminished ? 'btn-success' : 'btn-secondary'} mx-2`} 
           onClick={() => handleDivClick('diminished')}
         >
           Diminished
         </button>
         <button
-          className={`col-6 my-1 btn btn-sm ${selections.augmented ? 'btn-success' : 'btn-secondary'} mx-2`} onTouchStart={() => handleDivClick('augmented')}
+          className={`col-6 my-1 btn btn-sm ${selections.augmented ? 'btn-success' : 'btn-secondary'} mx-2`} 
           onClick={() => handleDivClick('augmented')}
         >
           Augmented
@@ -155,16 +155,16 @@ return (
       </div>
     </div>
     <div className="container mt-4 d-flex justify-content-center">
-      <button className="btn btn-dark mt-2 mx-1 btn-sm" onTouchStart={() => playChord()} onClick={() => playChord()}>Play Chord</button>
-      <button className="btn btn-dark mt-2 mx-1 btn-sm" onTouchStart={() => playChord()} onClick={() => repeatChord()}>Repeat Chord</button>
+      <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => playChord()}>Play Chord</button>
+      <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => repeatChord()}>Repeat Chord</button>
     </div>
     <div className="container mt-4 d-flex justify-content-center">
       <h2 className="h4">Selection: </h2>
       <div className="d-flex justify-content-center row">
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onTouchStart={(e) => checkChord(e)} onClick={(e) => checkChord(e)}>Major</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm"onTouchStart={(e) => checkChord(e)} onClick={(e) => checkChord(e)}>Minor</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onTouchStart={(e) => checkChord(e)} onClick={(e) => checkChord(e)}>Diminished</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onTouchStart={(e) => checkChord(e)} onClick={(e) => checkChord(e)}>Augmented</button>
+        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Major</button>
+        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Minor</button>
+        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Diminished</button>
+        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Augmented</button>
       </div>
     </div>
     <div className="mt-2">
