@@ -13,8 +13,9 @@ function App() {
   const augmented = [['C','E','Ab'], ['Db','F','A'], ['D','Gb','Bb'],['Eb','G','B'],['E','Ab','C'],['F','A','Db'],['Gb','Bb','D'],['G','B','Eb'],['Ab','C','E'],['A','Db','F'],['Bb','D','Gb'],['B','Eb','G']];
   const [selections, setSelections] = useState({
     'major': true,
-    'minor': true,
-    'diminished': false
+    'minor': false,
+    'diminished': false,
+    'augmented': false
   })
   let randomChord;
   let now;
@@ -159,7 +160,7 @@ return (
       <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => repeatChord()}>Repeat Chord</button>
     </div>
     <div className="container mt-4 d-flex justify-content-center">
-      <h2 className="h4">Selection: </h2>
+      <h2 className="h4">Your Answer: </h2>
       <div className="d-flex justify-content-center row">
         <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Major</button>
         <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Minor</button>
