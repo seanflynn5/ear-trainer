@@ -16,7 +16,7 @@ function Tour() {
     tour.addStep({
       title: 'How to Use My Ear Trainer',
       id: 'step-1',
-      text: 'Select any combination of chord types you want to hear random instances of and test yourself on. After playing a chord, repeat it or select your answer to indicate the chord type you believe was played. Have fun and happy listening!',
+      text: `Select any combination of chord types you want to hear random instances of and test yourself on. After playing a chord, repeat it or select your answer to indicate the chord type you believe was played. If you're on mobile, be sure to turn off "silent" mode. Have fun and happy listening!`,
       attachTo: { element: '.major-button', on: 'bottom' },
       buttons: [
         {
