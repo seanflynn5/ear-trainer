@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Shepherd from 'shepherd.js';
 
 function Tour() {
@@ -24,7 +25,7 @@ function Tour() {
             return tour.complete();
           },
           text: `Let's get started!`,
-          classes: 'shepherd-button-secondary',
+          classes: 'btn btn-dark popup-button',
           when: {
             show: () => true // Trigger the action when the step is shown
           }

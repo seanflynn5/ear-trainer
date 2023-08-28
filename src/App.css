@@ -44,6 +44,10 @@ body, html {
   align-items: center;
 }
 
+.popup-button {
+  margin-top: 10px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
