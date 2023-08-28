@@ -1,5 +1,6 @@
 import * as Tone from 'tone';
 import Tour from './Tour';
+import { FaPlay, FaRedo } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
     'diminished': false,
     'augmented': false
   })
+  const [selectedButton, setSelectedButton] = useState(null);
   let randomChord;
   let now;
   let octave;
@@ -92,25 +94,34 @@ function App() {
     synth2.triggerRelease(now + 1);
   }
 
-  const checkChord = (e) => {
+  const checkChord = (e, chordType) => {
     if (!randomChord) {
-      setFeedback('Play a chord!');
+      setSelectedButton(null);
       return;
     }
-    let choice = e.target.innerHTML;
+    
+    let choice = chordType;
+    let isCorrect = false;
+    
     if (
       (choice === 'Major' && containsArray(major, randomChord)) ||
       (choice === 'Minor' && containsArray(minor, randomChord)) ||
       (choice === 'Diminished' && containsArray(diminished, randomChord)) ||
       (choice === 'Augmented' && containsArray(augmented, randomChord))
     ) {
+      isCorrect = true;
       setFeedback('Right!');
       setScore(score + 1);
     } else {
       setFeedback('Wrong!');
       setScore(0);
     }
-  }
+
+    setSelectedButton({ chordType, isCorrect });
+    setTimeout(() => {
+      setSelectedButton(null);
+    }, 1000);
+  };
 
   function containsArray(arrayOfArrays, targetArray) {
     for (const array of arrayOfArrays) {
@@ -128,9 +139,11 @@ function App() {
 return (
   <div className='App'>
     <Tour />
+    <div className='content'></div>
     <h1 className="display-4">My Ear Trainer</h1>
-    <div className="container mt-4 d-flex justify-content-center">
-      <h2 className="h4">Chord Types:</h2>
+    <div className='content'>
+    <div className="container mt-4 d-flex flex-column justify-content-center box">
+      <h2 className="h4 align-self-center">Chord Types</h2>
       <div className="d-flex justify-content-center row">
         <button
           className={`col-6 my-1 btn btn-sm ${selections.major ? 'btn-success' : 'btn-secondary'} mx-2`} 
@@ -157,23 +170,46 @@ return (
           Augmented
         </button>
       </div>
+      <div className="container mt-4 d-flex justify-content-center buttons">
+    <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => playChord()}>
+          <FaPlay /> 
+        </button>
+        <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => repeatChord()}>
+          <FaRedo />
+        </button>
     </div>
-    <div className="container mt-4 d-flex justify-content-center">
-      <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => playChord()}>Play Chord</button>
-      <button className="btn btn-dark mt-2 mx-1 btn-sm" onClick={() => repeatChord()}>Repeat Chord</button>
     </div>
-    <div className="container mt-4 d-flex justify-content-center">
-      <h2 className="h4">Your Answer: </h2>
-      <div className="d-flex justify-content-center row">
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Major</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Minor</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Diminished</button>
-        <button className="col-6 btn btn-secondary mx-2 my-1 btn-sm" onClick={(e) => checkChord(e)}>Augmented</button>
+
+    <div className="container mt-4 d-flex flex-column justify-content-center box">
+      <h2 className="h4 align-self-center">Your Answer</h2>
+        <div className="d-flex justify-content-center row">
+          <button
+            className={`col-6 btn ${selectedButton?.chordType === 'Major' ? (selectedButton.isCorrect ? 'btn-success' : 'btn-danger') : 'btn-secondary'} mx-2 my-1 btn-sm`}
+            onClick={(e) => checkChord(e, 'Major')}
+          >
+            Major
+          </button>
+          <button
+            className={`col-6 btn ${selectedButton?.chordType === 'Minor' ? (selectedButton.isCorrect ? 'btn-success' : 'btn-danger') : 'btn-secondary'} mx-2 my-1 btn-sm`}
+            onClick={(e) => checkChord(e, 'Minor')}
+          >
+            Minor
+          </button>
+          <button
+            className={`col-6 btn ${selectedButton?.chordType === 'Diminished' ? (selectedButton.isCorrect ? 'btn-success' : 'btn-danger') : 'btn-secondary'} mx-2 my-1 btn-sm`}
+            onClick={(e) => checkChord(e, 'Diminished')}
+          >
+            Diminished
+          </button>
+          <button
+            className={`col-6 btn ${selectedButton?.chordType === 'Augmented' ? (selectedButton.isCorrect ? 'btn-success' : 'btn-danger') : 'btn-secondary'} mx-2 my-1 btn-sm`}
+            onClick={(e) => checkChord(e, 'Augmented')}
+          >
+            Augmented
+          </button>
+        </div>
       </div>
-    </div>
-    <div className="mt-2">
-      <p className={feedback === 'Right!' ? 'text-success' : 'text-danger'}>{feedback}</p>
-    </div>
+      </div>
     <div className="container mt-4 d-flex justify-content-center">
       <h2 className="h4">Score: {score}</h2>
     </div>

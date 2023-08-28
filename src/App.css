@@ -9,12 +9,6 @@ body, html {
   overflow: hidden
 }
 
-.tour {
-  padding: 10px;
-  background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,1) 29%, rgba(21,159,0,0.9066220238095238) 100%);
-border: 1px solid white;
-}
 
 .App {
   display: flex;
@@ -23,6 +17,31 @@ border: 1px solid white;
   justify-content: center;
   height: 100vh;
   margin: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+
+.tour {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+
+.box {
+  align-self: flex-start;
+  margin: -30px;
+}
+
+.buttons {
+  align-items: center;
 }
 
 .App-logo {
