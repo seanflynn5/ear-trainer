@@ -59,7 +59,6 @@ function App() {
         }
       }
     }
-    console.log(newChords)
     setChords(newChords);
   }  
 
@@ -79,9 +78,7 @@ function App() {
   }
 
   const repeatChord = () => {
-    console.log('randomChord', randomChord)
     if (!randomChord) {
-      console.log('here')
       setFeedback('Play a chord!');
       return;
     }
@@ -120,7 +117,7 @@ function App() {
     setSelectedButton({ chordType, isCorrect });
     setTimeout(() => {
       setSelectedButton(null);
-    }, 200);
+    }, 250);
   };
 
   function containsArray(arrayOfArrays, targetArray) {
