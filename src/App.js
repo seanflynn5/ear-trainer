@@ -1,4 +1,5 @@
 import * as Tone from 'tone';
+import Tour from './Tour';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
   let synth1;
   let synth2;
 
+  
   const handleDivClick = (type) => {
     setSelections(prevSelections => ({
       ...prevSelections,
@@ -125,6 +127,7 @@ function App() {
 
 return (
   <div className='App'>
+    <Tour />
     <h1 className="display-4">My Ear Trainer</h1>
     <div className="container mt-4 d-flex justify-content-center">
       <h2 className="h4">Chord Types:</h2>

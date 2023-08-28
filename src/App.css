@@ -1,10 +1,19 @@
 body, html {
-  height: 100%;
   background-image: url('https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwNTktMDQxYy1rdjd2N3duYi5qcGc.jpg');
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden
+}
+
+.tour {
+  padding: 10px;
+  background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 29%, rgba(21,159,0,0.9066220238095238) 100%);
+border: 1px solid white;
 }
 
 .App {
