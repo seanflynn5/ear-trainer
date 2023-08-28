@@ -120,7 +120,7 @@ function App() {
     setSelectedButton({ chordType, isCorrect });
     setTimeout(() => {
       setSelectedButton(null);
-    }, 1000);
+    }, 200);
   };
 
   function containsArray(arrayOfArrays, targetArray) {
