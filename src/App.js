@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import Tour from './Tour';
 import { FaPlay, FaRedo } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
