@@ -20,6 +20,13 @@ function App() {
     'augmented': false
   })
   const [selectedButton, setSelectedButton] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(true);
+  
+  const handleClose = () => {
+    setIsOpen(false);
+  }
+
+
   let randomChord;
   let now;
   let octave;
@@ -27,7 +34,6 @@ function App() {
   let synth1;
   let synth2;
 
-  
   const handleDivClick = (type) => {
     setSelections(prevSelections => ({
       ...prevSelections,
@@ -117,7 +123,7 @@ function App() {
     setSelectedButton({ chordType, isCorrect });
     setTimeout(() => {
       setSelectedButton(null);
-    }, 250);
+    }, 350);
   };
 
   function containsArray(arrayOfArrays, targetArray) {
@@ -135,9 +141,34 @@ function App() {
 
 return (
   <div className='App'>
-    <Tour />
-    <div className='content'></div>
+
+    {modalIsOpen && (
+        <div
+          onClick={() => {
+            handleClose();
+          }}
+          className='overlay'
+        >
+          <div className='modalContents'>
+            <div className='modalText'>
+            Select any combination of chord types you want to hear random instances of and test yourself on. After playing a chord with the 'Play' button, repeat it or select your answer to indicate the chord type you believe was played. Your selection being highlighted green indicates a correct answer while the selection being highlighted red indicates it being incorrect. If you're on mobile, be sure to turn off "silent" mode. Have fun and happy listening!
+            <button className='btn btn-dark mt-2 mx-1 btn-sm popup-button' onClick={() => {
+            handleClose()
+          }}>Let's get started!</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+    <div>
+        </div>
+
+
+   
     <h1 className="display-4">My Ear Trainer</h1>
+    <div className="container mt-4 d-flex justify-content-center">
+      <h2 className="h4">Score: {score}</h2>
+    </div>
     <div className='content'>
     <div className="container mt-4 d-flex flex-column justify-content-center box">
       <h2 className="h4 align-self-center">Chord Types</h2>
@@ -207,9 +238,6 @@ return (
         </div>
       </div>
       </div>
-    <div className="container mt-4 d-flex justify-content-center">
-      <h2 className="h4">Score: {score}</h2>
-    </div>
   </div>
 );
 }

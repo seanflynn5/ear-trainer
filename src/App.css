@@ -45,7 +45,7 @@ body, html {
 }
 
 .popup-button {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .App-logo {
@@ -84,4 +84,49 @@ body, html {
     top: 100%;
     left: 0;
   }
+}
+
+.overlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: rgba(1, 5, 2, 0.637);
+}
+
+.modalContents {
+  width: 500px; 
+  height: 300px; 
+  background-color: whitesmoke;
+  display: inline-block; 
+  position: fixed; 
+  top: 0; 
+  bottom: 0; 
+  margin: auto; 
+  left: 0; 
+  right: 0; 
+  border-radius: 20px; 
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .modalContents {
+    width: 300px; 
+    height: 500px; 
+    background-color: whitesmoke;
+    display: inline-block; 
+    position: fixed; 
+    top: 0; 
+    bottom: 0; 
+    margin: auto; 
+    left: 0; 
+    right: 0; 
+    border-radius: 20px; 
+  }
+}
+
+.modalText {
+  padding: 30px; 
+  /* font-family: roboto slab;  */
+  color:rgb(40, 38, 38);
 }
