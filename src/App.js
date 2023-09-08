@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import { FaPlay, FaRedo } from 'react-icons/fa';
 import Modal from './Modal';
 import Play from './Play';
 import Check from './Check';
