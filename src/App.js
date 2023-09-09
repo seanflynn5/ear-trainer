@@ -139,7 +139,7 @@ function App() {
 return (
   <div className='App'>
     <Modal modalIsOpen={modalIsOpen} handleClose={handleClose}/>
-    <h1 className="display-4">My Ear Trainer</h1>
+    <h1 className="title display-4">My Ear Trainer</h1>
     <div className="container mt-4 d-flex justify-content-center">
       <h2 className="h4">Score: {score}</h2>
     </div>
