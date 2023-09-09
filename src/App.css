@@ -1,6 +1,5 @@
 body, html {
   background-image: url('https://images.rawpixel.com/image_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwNTktMDQxYy1rdjd2N3duYi5qcGc.jpg');
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -83,6 +82,9 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
+  }
+  h1 {
+    display: none;
   }
 }
 
