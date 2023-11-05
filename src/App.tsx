@@ -5,44 +5,52 @@ import Check from './Check';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { JsxElement } from 'typescript';
+
+type Selections = {
+  'major': boolean,
+  'minor': boolean,
+  'diminished': boolean,
+  'augmented': boolean
+}
 
 function App() {
-  const [chords, setChords] = useState('');
-  const [score, setScore] = useState(0);
-  const major = [['C','E','G'], ['Db','F','Ab'], ['D','Gb','A'],['Eb','G','Bb'],['E','Ab','B'],['F','A','C'],['Gb','Bb','Db'],['G','B','D'],['Ab','C','Eb'],['A','Db','E'],['Bb','D','F'],['B','Eb','Gb']];
-  const minor = [['C', 'Eb', 'G'],['Db','E','Ab'], ['D','F','A'],['Eb','Gb','Bb'],['E','G','B'],['F','Ab','C'],['Gb','A','Db'],['G','Bb','D'],['Ab','B','Eb'],['A','C','E'],['Bb','Db','F'],['B','D','Gb']];
-  const diminished = [['C', 'Eb', 'Gb'],['Db','E','G'], ['D','F','Ab'],['Eb','Gb','A'],['E','G','Bb'],['F','Ab','B'],['Gb','A','C'],['G','Bb','Db'],['Ab','B','D'],['A','C','Eb'],['Bb','Db','E'],['B','D','F']];
-  const augmented = [['C','E','Ab'], ['Db','F','A'], ['D','Gb','Bb'],['Eb','G','B'],['E','Ab','C'],['F','A','Db'],['Gb','Bb','D'],['G','B','Eb'],['Ab','C','E'],['A','Db','F'],['Bb','D','Gb'],['B','Eb','G']];
-  const [selections, setSelections] = useState({
+  const [chords, setChords] = useState<string[][]>([]);
+  const [score, setScore] = useState<number>(0);
+  const major: string[][] = [['C','E','G'], ['Db','F','Ab'], ['D','Gb','A'],['Eb','G','Bb'],['E','Ab','B'],['F','A','C'],['Gb','Bb','Db'],['G','B','D'],['Ab','C','Eb'],['A','Db','E'],['Bb','D','F'],['B','Eb','Gb']];
+  const minor: string[][] = [['C', 'Eb', 'G'],['Db','E','Ab'], ['D','F','A'],['Eb','Gb','Bb'],['E','G','B'],['F','Ab','C'],['Gb','A','Db'],['G','Bb','D'],['Ab','B','Eb'],['A','C','E'],['Bb','Db','F'],['B','D','Gb']];
+  const diminished: string[][] = [['C', 'Eb', 'Gb'],['Db','E','G'], ['D','F','Ab'],['Eb','Gb','A'],['E','G','Bb'],['F','Ab','B'],['Gb','A','C'],['G','Bb','Db'],['Ab','B','D'],['A','C','Eb'],['Bb','Db','E'],['B','D','F']];
+  const augmented: string[][] = [['C','E','Ab'], ['Db','F','A'], ['D','Gb','Bb'],['Eb','G','B'],['E','Ab','C'],['F','A','Db'],['Gb','Bb','D'],['G','B','Eb'],['Ab','C','E'],['A','Db','F'],['Bb','D','Gb'],['B','Eb','G']];
+  const [selections, setSelections] = useState<Selections>({
     'major': true,
     'minor': false,
     'diminished': false,
     'augmented': false
   })
   const [selectedButton, setSelectedButton] = useState(null);
-  const [modalIsOpen, setIsOpen] = useState(true);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(true);
   
-  const handleClose = () => {
+  const handleClose = (): void => {
     setIsOpen(false);
   }
 
 
-  let randomChord;
+  let randomChord: Array<string>;
   let now;
-  let octave;
+  let octave: number;
   let synth0;
   let synth1;
   let synth2;
 
-  const handleDivClick = (type) => {
+  const handleDivClick = (type): void => {
     setSelections(prevSelections => ({
       ...prevSelections,
       [type]: !prevSelections[type]
     }));
   };
 
-  const chordCount = () => {
-    const newChords = [];
+  const chordCount = (): void => {
+    const newChords: string[][] = [];
     for (const key in selections) {
       if (selections[key] && key === 'major') {
         for (let i = 0; i < major.length; i++) {
@@ -68,7 +76,7 @@ function App() {
     setChords(newChords);
   }  
 
-  const playChord = () => {
+  const playChord = (): void => {
     randomChord = chords[Math.floor(Math.random() * chords.length)]
     octave = Math.random() < 0.5 ? 4 : 5;
     synth0 = new Tone.Synth().toDestination();
@@ -83,7 +91,7 @@ function App() {
     synth2.triggerRelease(now + 1);
   }
 
-  const repeatChord = () => {
+  const repeatChord = (): void => {
     if (!randomChord) {
       return;
     }
@@ -96,7 +104,7 @@ function App() {
     synth2.triggerRelease(now + 1);
   }
 
-  const checkChord = (e, chordType) => {
+  const checkChord = (e, chordType: string): void => {
     if (!randomChord) {
       setSelectedButton(null);
       return;
@@ -123,7 +131,7 @@ function App() {
     }, 350);
   };
 
-  function containsArray(arrayOfArrays, targetArray) {
+  function containsArray(arrayOfArrays: string[][], targetArray: Array<string>): boolean {
     for (const array of arrayOfArrays) {
       if (array.length === targetArray.length && array.every((value, index) => value === targetArray[index])) {
         return true;
@@ -144,8 +152,8 @@ return (
       <h2 className="h4">Score: {score}</h2>
     </div>
     <div className='content'>
-    <Play selections={selections} handleDivClick={handleDivClick} playChord={playChord} repeatChord={repeatChord}/>
-    <Check selectedButton={selectedButton} checkChord={checkChord}/>
+    <Play<JsxElement> selections={selections} handleDivClick={handleDivClick} playChord={playChord} repeatChord={repeatChord}/>
+    <Check<JsxElement> selectedButton={selectedButton} checkChord={checkChord}/>
       </div>
   </div>
 );
