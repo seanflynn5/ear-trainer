@@ -10,7 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "shepherd.js": "^11.1.1",
     "tone": "^14.7.77",
     "typescript": "^5.2.2",
@@ -22,6 +22,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
+    },
   "eslintConfig": {
     "extends": [
       "react-app",
