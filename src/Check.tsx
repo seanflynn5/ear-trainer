@@ -1,5 +1,12 @@
+import React from 'react'
+import { SelectedButton }from './App'
 
-const Check = (props) => {
+interface CheckProps {
+  selectedButton: SelectedButton;
+  checkChord: Function;
+}
+
+const Check = (props: CheckProps): React.JSX.Element => {
     return(
     <div className="container mt-4 d-flex flex-column justify-content-center box">
       <h2 className="h4 align-self-center">Your Answer</h2>

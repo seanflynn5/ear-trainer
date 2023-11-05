@@ -1,6 +1,16 @@
 import { FaPlay, FaRedo } from 'react-icons/fa';
+import React from 'react'
+import { Selections } from './App'
 
-const Play = (props) => {
+interface PlayProps {
+  selections: Selections;
+  handleDivClick: Function;
+  playChord: Function;
+  repeatChord: Function;
+
+}
+
+const Play = (props: PlayProps): React.JSX.Element => {
     return (
     <div className="container mt-4 d-flex flex-column justify-content-center box">
     <h2 className="h4 align-self-center">Chord Types</h2>

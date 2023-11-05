@@ -5,16 +5,25 @@ import Check from './Check';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { JsxElement } from 'typescript';
 
-type Selections = {
+export type Selections = {
   'major': boolean,
   'minor': boolean,
   'diminished': boolean,
   'augmented': boolean
 }
 
-function App() {
+interface Synth {
+  triggerAttack: Function;
+  triggerRelease: Function;
+}
+
+export interface SelectedButton {
+  chordType: string;
+  isCorrect: boolean;
+}
+
+function App(): React.JSX.Element {
   const [chords, setChords] = useState<string[][]>([]);
   const [score, setScore] = useState<number>(0);
   const major: string[][] = [['C','E','G'], ['Db','F','Ab'], ['D','Gb','A'],['Eb','G','Bb'],['E','Ab','B'],['F','A','C'],['Gb','Bb','Db'],['G','B','D'],['Ab','C','Eb'],['A','Db','E'],['Bb','D','F'],['B','Eb','Gb']];
@@ -27,7 +36,7 @@ function App() {
     'diminished': false,
     'augmented': false
   })
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState<SelectedButton>(null);
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
   
   const handleClose = (): void => {
@@ -38,36 +47,36 @@ function App() {
   let randomChord: Array<string>;
   let now;
   let octave: number;
-  let synth0;
-  let synth1;
-  let synth2;
+  let synth0: Synth;
+  let synth1: Synth;
+  let synth2: Synth;
 
-  const handleDivClick = (type): void => {
+  const handleDivClick = (type: string): void => {
     setSelections(prevSelections => ({
       ...prevSelections,
-      [type]: !prevSelections[type]
+      [type as keyof Selections]: !prevSelections[type as keyof Selections]
     }));
   };
 
   const chordCount = (): void => {
     const newChords: string[][] = [];
     for (const key in selections) {
-      if (selections[key] && key === 'major') {
+      if (selections[key as keyof Selections] && key === 'major') {
         for (let i = 0; i < major.length; i++) {
           newChords.push(major[i])
         }
       }
-      if (selections[key] && key === 'minor') {
+      if (selections[key as keyof Selections] && key === 'minor') {
         for (let i = 0; i < minor.length; i++) {
           newChords.push(minor[i])
         }
       }
-      if (selections[key] && key === 'diminished') {
+      if (selections[key as keyof Selections] && key === 'diminished') {
         for (let i = 0; i < diminished.length; i++) {
           newChords.push(diminished[i])
         }
       }
-      if (selections[key] && key === 'augmented') {
+      if (selections[key as keyof Selections] && key === 'augmented') {
         for (let i = 0; i < augmented.length; i++) {
           newChords.push(augmented[i])
         }
@@ -104,7 +113,7 @@ function App() {
     synth2.triggerRelease(now + 1);
   }
 
-  const checkChord = (e, chordType: string): void => {
+  const checkChord = (e: Event, chordType: string): void => {
     if (!randomChord) {
       setSelectedButton(null);
       return;
@@ -152,8 +161,8 @@ return (
       <h2 className="h4">Score: {score}</h2>
     </div>
     <div className='content'>
-    <Play<JsxElement> selections={selections} handleDivClick={handleDivClick} playChord={playChord} repeatChord={repeatChord}/>
-    <Check<JsxElement> selectedButton={selectedButton} checkChord={checkChord}/>
+    <Play selections={selections} handleDivClick={handleDivClick} playChord={playChord} repeatChord={repeatChord}/>
+    <Check selectedButton={selectedButton} checkChord={checkChord}/>
       </div>
   </div>
 );

@@ -1,4 +1,11 @@
-const Modal = (props) => {
+import React from 'react'
+
+interface ModalProps {
+  modalIsOpen: boolean;
+  handleClose: Function;
+}
+
+const Modal = (props: ModalProps): React.JSX.Element => {
     return(
         <div>
         {props.modalIsOpen && (
