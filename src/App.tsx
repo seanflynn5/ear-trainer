@@ -26,6 +26,7 @@ export interface SelectedButton {
 function App(): React.JSX.Element {
   const [chords, setChords] = useState<string[][]>([]);
   const [score, setScore] = useState<number>(0);
+  const [highestScore, setHighestScore] = useState<number>(0);
   const major: string[][] = [['C','E','G'], ['Db','F','Ab'], ['D','Gb','A'],['Eb','G','Bb'],['E','Ab','B'],['F','A','C'],['Gb','Bb','Db'],['G','B','D'],['Ab','C','Eb'],['A','Db','E'],['Bb','D','F'],['B','Eb','Gb']];
   const minor: string[][] = [['C', 'Eb', 'G'],['Db','E','Ab'], ['D','F','A'],['Eb','Gb','Bb'],['E','G','B'],['F','Ab','C'],['Gb','A','Db'],['G','Bb','D'],['Ab','B','Eb'],['A','C','E'],['Bb','Db','F'],['B','D','Gb']];
   const diminished: string[][] = [['C', 'Eb', 'Gb'],['Db','E','G'], ['D','F','Ab'],['Eb','Gb','A'],['E','G','Bb'],['F','Ab','B'],['Gb','A','C'],['G','Bb','Db'],['Ab','B','D'],['A','C','Eb'],['Bb','Db','E'],['B','D','F']];
@@ -130,6 +131,8 @@ function App(): React.JSX.Element {
     ) {
       isCorrect = true;
       setScore(score + 1);
+      if (score >= highestScore) setHighestScore(score + 1);
+
     } else {
       setScore(0);
     }
@@ -159,6 +162,9 @@ return (
     <h1 className="title display-4">My Ear Trainer</h1>
     <div className="container mt-4 d-flex justify-content-center">
       <h2 className="h4">Score: {score}</h2>
+    </div>
+    <div className="container mt-4 d-flex justify-content-center">
+      <h2 className="h4">Highest Score: {highestScore}</h2>
     </div>
     <div className='content'>
     <Play selections={selections} handleDivClick={handleDivClick} playChord={playChord} repeatChord={repeatChord}/>
