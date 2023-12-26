@@ -131,8 +131,10 @@ function App(): React.JSX.Element {
     ) {
       isCorrect = true;
       setScore(score + 1);
-      if (score >= highestScore) setHighestScore(score + 1);
-
+      if (score >= highestScore) {
+        setHighestScore(score + 1);
+        localStorage.setItem('highestScore', (highestScore + 1).toString());
+      };
     } else {
       setScore(0);
     }
@@ -153,6 +155,10 @@ function App(): React.JSX.Element {
   }
 
   useEffect(() => {
+    const storedHighestScore = localStorage.getItem('highestScore');
+    if (storedHighestScore) {
+      setHighestScore(parseInt(storedHighestScore));
+    }
     chordCount();
 }, [selections])
 
